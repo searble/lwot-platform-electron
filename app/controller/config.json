@@ -1,0 +1,6 @@
+{
+    "dev": true,
+    "deploy": {
+        "asar": true
+    }
+}
