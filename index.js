@@ -22,13 +22,13 @@ module.exports = (()=> {
 
     let plugin = {};
 
-    plugin.compiler = 'electron';
+    plugin.compile = require('./compiler');
 
     plugin.run = ()=> new Promise((callback)=> {
         terminal('electron', [RUN_PATH]).then(callback);
     });
 
-    plugin.deploy = ()=> new Promise((callback)=> {
+    plugin.deploy = (argv)=> new Promise((callback)=> {
 
     });
 
