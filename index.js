@@ -109,7 +109,7 @@ module.exports = (()=> {
                 outputDirectory: INSTALLER_PATH,
                 authors: config.deploy.authors ? config.deploy.authors : config.deploy.name,
                 owners: config.deploy.owners ? config.deploy.owners : config.deploy.name,
-                description: config.deploy.description ? config.deploy.description : '',
+                description: config.deploy.description ? config.deploy.description : 'lwot',
                 title: config.deploy.title ? config.deploy.title : config.deploy.name,
                 version: config.deploy.version ? config.deploy.version : '0.0.0',
                 exe: `${config.deploy.name}.exe`,
@@ -120,7 +120,8 @@ module.exports = (()=> {
             if (config.deploy.iconUrl) installerOption.iconUrl = config.deploy.iconUrl;
             if (config.deploy.loadingGif) installerOption.loadingGif = config.deploy.loadingGif;
 
-            require('electron-winstaller').createWindowsInstaller(installerOption).then(next);
+            var winstaller = require('electron-winstaller').createWindowsInstaller(installerOption);
+            winstaller.then(next);
         } else if (platform == 'darwin') {
             var createDMG = require('electron-installer-dmg');
             let installerOption = {

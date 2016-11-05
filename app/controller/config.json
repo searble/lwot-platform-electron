@@ -5,7 +5,7 @@
         "prune": true,
         "authors": "lwot",
         "owners": "lwot",
-        "description": "",
+        "description": "lwot",
         "icon": {
             "darwin": "./icon.icns",
             "win32": "./icon.ico"
