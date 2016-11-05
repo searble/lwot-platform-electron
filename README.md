@@ -1,6 +1,6 @@
 # LWOT Platform - Electron
 
-## Install
+## Usage
 
 ### Install Dependencies
 
@@ -15,6 +15,17 @@ lwot install https://github.com/searble/lwot-compiler-electron
 ```bash
 lwot install https://github.com/searble/lwot-platform-electron
 lwot install platform electron #not working yet
+```
+
+### Deploy Installer
+
+- you can get the installation file at `./plugins/platform/electron/deploy/install-*` after processing deploy.
+
+```bash
+lwot deploy electron [platform] [architecture]
+lwot deploy electron            # your platform (win32, darwin) & x64
+lwot deploy electron darwin     # only support x64 architecture
+lwot deploy electron win32 x32
 ```
 
 ## Development Guide
