@@ -51,6 +51,8 @@ module.exports = (()=> {
             arch = 'x64'
         }
 
+        console.log(`packaging app '${platform} ${arch}'`);
+
         const PACAKGE_PATH = path.resolve(DEPLOY_ROOT, `${config.deploy.name}-${platform}-${arch}`);
         if (fs.existsSync(PACAKGE_PATH)) fsext.removeSync(PACAKGE_PATH);
 
@@ -67,7 +69,7 @@ module.exports = (()=> {
         };
 
         if (config.deploy['version-string']) packageOption['version-string'] = config.deploy['version-string'];
-        if (config.deploy.icon[platform]) packageOption.icon = config.deploy.icon;
+        if (config.deploy.icon[platform]) packageOption.icon = path.resolve(CTRL_PATH, config.deploy.icon[platform]);
 
         var packager = require('electron-packager');
         packager(packageOption, (err)=> {
@@ -92,6 +94,8 @@ module.exports = (()=> {
             platform = process.platform;
             arch = 'x64'
         }
+
+        console.log(`make installer app '${platform} ${arch}'`);
 
         const PACAKGE_PATH = path.resolve(DEPLOY_ROOT, `${config.deploy.name}-${platform}-${arch}`);
         const INSTALLER_PATH = path.resolve(DEPLOY_ROOT, `installer-${platform}-${arch}`);
@@ -120,7 +124,7 @@ module.exports = (()=> {
         } else if (platform == 'darwin') {
             var createDMG = require('electron-installer-dmg');
             let installerOption = {
-                appPath: PACAKGE_PATH,
+                appPath: path.resolve(PACAKGE_PATH, `${config.deploy.name}.app`),
                 name: config.deploy.name,
                 out: INSTALLER_PATH
             };
@@ -142,8 +146,8 @@ module.exports = (()=> {
 
         deploy.package(argv)
             .then(()=> deploy.installer(argv))
-            .then((err)=>{
-                if(err) console.log(err);
+            .then((err)=> {
+                if (err) console.log(err);
                 callback();
             });
     });
