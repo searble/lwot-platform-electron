@@ -58,7 +58,7 @@ module.exports = (()=> {
             platform: platform,
             arch: arch,
             out: DEPLOY_ROOT,
-            dir: RUN_PATH,
+            dir: path.resolve(RUN_PATH),
             asar: config.deploy.asar !== false,
             prune: config.deploy.prune !== false,
             name: config.deploy.name,
@@ -70,7 +70,12 @@ module.exports = (()=> {
         if (config.deploy.icon[platform]) packageOption.icon = config.deploy.icon;
 
         var packager = require('electron-packager');
-        packager(packageOption, ()=> {
+        packager(packageOption, (err)=> {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
             next();
         });
     });
@@ -91,8 +96,8 @@ module.exports = (()=> {
         const PACAKGE_PATH = path.resolve(DEPLOY_ROOT, `${config.deploy.name}-${platform}-${arch}`);
         const INSTALLER_PATH = path.resolve(DEPLOY_ROOT, `installer-${platform}-${arch}`);
 
-        if (fs.existsSync(PACAKGE_PATH)) fsext.removeSync(PACAKGE_PATH);
         if (fs.existsSync(INSTALLER_PATH)) fsext.removeSync(INSTALLER_PATH);
+        fsext.mkdirsSync(INSTALLER_PATH);
 
         if (platform == 'win32') {
             let installerOption = {
@@ -137,7 +142,10 @@ module.exports = (()=> {
 
         deploy.package(argv)
             .then(()=> deploy.installer(argv))
-            .then(callback);
+            .then((err)=>{
+                if(err) console.log(err);
+                callback();
+            });
     });
 
     return plugin;
