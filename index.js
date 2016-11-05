@@ -51,7 +51,7 @@ module.exports = (()=> {
             arch = 'x64'
         }
 
-        const PACAKGE_PATH = path.join(DEPLOY_ROOT, `${config.deploy.name}-${platform}-${arch}`);
+        const PACAKGE_PATH = path.resolve(DEPLOY_ROOT, `${config.deploy.name}-${platform}-${arch}`);
         if (fs.existsSync(PACAKGE_PATH)) fsext.removeSync(PACAKGE_PATH);
 
         let packageOption = {
@@ -88,8 +88,8 @@ module.exports = (()=> {
             arch = 'x64'
         }
 
-        const PACAKGE_PATH = path.join(DEPLOY_ROOT, `${config.deploy.name}-${platform}-${arch}`);
-        const INSTALLER_PATH = path.join(out, `installer-${platform}-${arch}`);
+        const PACAKGE_PATH = path.resolve(DEPLOY_ROOT, `${config.deploy.name}-${platform}-${arch}`);
+        const INSTALLER_PATH = path.resolve(DEPLOY_ROOT, `installer-${platform}-${arch}`);
 
         if (fs.existsSync(PACAKGE_PATH)) fsext.removeSync(PACAKGE_PATH);
         if (fs.existsSync(INSTALLER_PATH)) fsext.removeSync(INSTALLER_PATH);
