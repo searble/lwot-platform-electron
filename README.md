@@ -7,7 +7,6 @@
 ```bash
 brew install mono wine                   #Mac
 sudo npm install -g electron-prebuilt
-lwot install https://github.com/searble/lwot-compiler-electron
 ```
 
 ### Install Platform

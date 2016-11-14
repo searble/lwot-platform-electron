@@ -1,24 +1,25 @@
 {
-  "name": "electron",
-  "plugin": "platform",
-  "version": "0.0.5",
-  "description": "",
-  "main": "index.js",
-  "author": "",
-  "license": "MIT",
-  "contributors": [
-    {
-      "name": "proin",
-      "email": "proin@proinlab.com",
-      "web": "http://proinlab.com"
+    "name": "electron",
+    "plugin": "platform",
+    "version": "0.0.6",
+    "description": "",
+    "main": "index.js",
+    "author": "",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "proin",
+            "email": "proin@proinlab.com",
+            "web": "http://proinlab.com"
+        }
+    ],
+    "dependencies": {
+        "electron-installer-dmg": "^0.1.2",
+        "electron-packager": "^8.2.0",
+        "electron-winstaller": "^2.3.4",
+        "fs-extra": "^1.0.0",
+        "jade": "^1.11.0",
+        "cross-spawn": "^5.0.1",
+        "less": "^2.7.1"
     }
-  ],
-  "dependencies": {
-    "electron-installer-dmg": "^0.1.2",
-    "electron-packager": "^8.2.0",
-    "electron-winstaller": "^2.3.4",
-    "fs-extra": "^1.0.0",
-    "jade": "^1.11.0",
-    "less": "^2.7.1"
-  }
 }
