@@ -20,11 +20,11 @@ electron.config = fs.existsSync(CONFIG_ROOT) ? JSON.parse(fs.readFileSync(CONFIG
 const DEV = electron.config.dev;
 
 // run
-let before = ()=> new Promise((next)=> {
+electron.before = ()=> new Promise((next)=> {
     require('./controller/before')(electron, process).then(next);
 });
 
-let eventBinder = ()=> new Promise((next)=> {
+electron.eventBinder = ()=> new Promise((next)=> {
     if (DEV) console.log('bind app event ...');
     let events = fs.readdirSync(EVENT_ROOT);
     for (let i = 0; i < events.length; i++) {
@@ -42,8 +42,11 @@ let eventBinder = ()=> new Promise((next)=> {
     next();
 });
 
-let ipcBinder = ()=> new Promise((next)=> {
+electron.ipcBinder = ()=> new Promise((next)=> {
     if (DEV) console.log('bind ipcMain event ...');
+
+    ipcMain.removeAllListeners();
+
     let ipc = fs.readdirSync(IPC_ROOT);
     for (let i = 0; i < ipc.length; i++) {
         if (path.extname(ipc[i]) === '.js') {
@@ -60,9 +63,9 @@ let ipcBinder = ()=> new Promise((next)=> {
     next();
 });
 
-before()
-    .then(()=> eventBinder())
-    .then(()=> ipcBinder())
+electron.before()
+    .then(()=> electron.eventBinder())
+    .then(()=> electron.ipcBinder())
     .then(()=> {
         if (DEV) console.log('App Launched');
     });
