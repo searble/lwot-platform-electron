@@ -27,6 +27,16 @@ lwot deploy electron darwin     # only support x64 architecture
 lwot deploy electron win32 x32
 ```
 
+### Reload IPC
+
+- not restart electron, you can reload ipc
+ 
+```javascript
+electron.ipcBinder().then(()=> {
+    console.log('reloaded');
+});
+```
+
 ## Development Guide
 
 in your folder `controller/electron/`.

@@ -53,9 +53,11 @@ electron.ipcBinder = ()=> new Promise((next)=> {
             let ipcName = path.basename(ipc[i], path.extname(ipc[i]));
             let ipcModule = path.resolve(IPC_ROOT, ipc[i]);
             try {
+                delete require.cache[ipcModule];
                 ipcMain.on(ipcName, require(ipcModule)(electron, process));
+                if (DEV) console.log(`[ipc-bind] '${ipcName}' binded`);
             } catch (e) {
-                if (DEV) console.log(eventName, e);
+                if (DEV) console.log(ipcName, e);
             }
         }
     }
