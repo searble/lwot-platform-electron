@@ -45,8 +45,6 @@ electron.eventBinder = ()=> new Promise((next)=> {
 electron.ipcBinder = ()=> new Promise((next)=> {
     if (DEV) console.log('bind ipcMain event ...');
 
-    ipcMain.removeAllListeners();
-
     let ipc = fs.readdirSync(IPC_ROOT);
     for (let i = 0; i < ipc.length; i++) {
         if (path.extname(ipc[i]) === '.js') {
