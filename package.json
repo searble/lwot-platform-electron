@@ -1,7 +1,7 @@
 {
     "name": "electron",
     "plugin": "platform",
-    "version": "0.0.9",
+    "version": "0.1.0",
     "description": "",
     "main": "index.js",
     "author": "",
@@ -14,12 +14,12 @@
         }
     ],
     "dependencies": {
-        "electron-installer-dmg": "^0.1.2",
-        "electron-packager": "^8.2.0",
-        "electron-winstaller": "^2.3.4",
+        "cross-spawn": "^5.0.1",
+        "electron-installer-dmg": "^0.2.0",
+        "electron-packager": "^8.4.0",
+        "electron-winstaller": "^2.5.1",
         "fs-extra": "^1.0.0",
         "jade": "^1.11.0",
-        "cross-spawn": "^5.0.1",
         "less": "^2.7.1"
     }
 }

@@ -1,11 +1,10 @@
 {
     "name": "lwot",
-    "version": "0.0.0",
     "private": true,
-    "authors": "ple, proin",
+    "authors": "lwot",
     "description": "Integrated Application Skeleton",
     "main": "electron.js",
     "devDependencies": {
-        "electron-prebuilt": "^1.4.5"
+        "electron": "^1.4.13"
     }
 }

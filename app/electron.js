@@ -25,7 +25,10 @@ electron.before = ()=> new Promise((next)=> {
 });
 
 electron.eventBinder = ()=> new Promise((next)=> {
-    if (DEV) console.log('bind app event ...');
+    if (!DEV) return next();
+
+    console.log('bind app event ...');
+
     let events = fs.readdirSync(EVENT_ROOT);
     for (let i = 0; i < events.length; i++) {
         if (path.extname(events[i]) === '.js') {
