@@ -25,9 +25,7 @@ electron.before = ()=> new Promise((next)=> {
 });
 
 electron.eventBinder = ()=> new Promise((next)=> {
-    if (!DEV) return next();
-
-    console.log('bind app event ...');
+    if (DEV) console.log('bind app event ...');
 
     let events = fs.readdirSync(EVENT_ROOT);
     for (let i = 0; i < events.length; i++) {
